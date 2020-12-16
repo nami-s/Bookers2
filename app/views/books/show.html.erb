@@ -6,6 +6,8 @@
     <th><%= @book.title %></th>
     <th><%= @book.body %></th>
     <th><%= link_to "Edit", edit_book_path(@book.id) %></th>
+    <th><%= link_to "Destroy", "/books/#{@book.id}", method: :delete, "data-confirm" => "本当に削除しますか？" %></th>
     </tr>
   </thead>
 </table>
+
