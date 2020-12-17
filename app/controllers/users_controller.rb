@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @user = User.find(current_user.id)
+    @book = Book.new
   end
 
   def create
@@ -25,11 +27,11 @@ class UsersController < ApplicationController
 
   def destroy
   end
-  
+
   private
-  
+
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image_id)
-  end  
+  end
 
 end
