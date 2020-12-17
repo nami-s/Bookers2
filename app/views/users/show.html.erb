@@ -1,50 +1,57 @@
-<h1>User info</h1>
-<%= @user.profile_image_id %>
-<table>
-  <thead>
-    <tr>
-      <td>name</td>
-      <td><%= @user.name %></td>
-    </tr>
-    <tr>
-      <td>Introduction</td>
-      <td><%= @user.introduction %></td>
-    </tr>
-  </thead>
-</table>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <h2>User info</h2>
+      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+      <table>
+        <thead>
+          <tr>
+            <td>name</td>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <td>Introduction</td>
+            <td><%= @user.introduction %></td>
+          </tr>
+        </thead>
+      </table>
 
-<% if @user.id == current_user.id %>
-  <p><%= link_to "プロフ編集", edit_user_path(@user) %></p>
-<% end %>
-
-
-<%= form_with model:@book, url:'/books', local:true do |f| %>
-  <h1>New book</h1>
-  <p>title</p>
-  <%= f.text_field :title %>
-  <p>Opinion</p>
-  <%= f.text_area :body %>
-  <%= f.submit 'Create Book' %>
-<% end %>
+      <% if @user.id == current_user.id %>
+        <p><%= link_to "プロフ編集", edit_user_path(@user) %></p>
+      <% end %>
 
 
-<h1>Books</h1>
+      <%= form_with model:@book, url:'/books', local:true do |f| %>
+        <h1>New book</h1>
+        <p>title</p>
+        <%= f.text_field :title %>
+        <p>Opinion</p>
+        <%= f.text_area :body %>
+        <%= f.submit 'Create Book' %>
+      <% end %>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Title</th>
-      <th>Opinion</th>
-    </tr>
-  </thead>
-  <% @books.each do |book| %>
-  <tbody>
-    <tr>
-      <td>image</td>
-      <td><span><%= link_to book.title, book_path(book.id) %></span></td>
-      <td><span><%= book.body %></span></td>
-    </tr>
-  </tbody>
-  <% end %>
-</table>
+    <div class="col-md-8 offset-md-1">
+      <h1>Books</h1>
+
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+        </thead>
+        <% @books.each do |book| %>
+        <tbody>
+          <tr>
+            <td><%= attachment_image_tag @user, :profile_image, size: "40x40", format: 'jpeg', fallback: "no_image.jpg" %></td>
+            <td><span><%= link_to book.title, book_path(book.id) %></span></td>
+            <td><span><%= book.body %></span></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,12 +1,48 @@
-<h1>Book detail</h1>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <h2>User info</h2>
+      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+      <table>
+        <thead>
+          <tr>
+            <td>name</td>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <td>Introduction</td>
+            <td><%= @user.introduction %></td>
+          </tr>
+        </thead>
+      </table>
 
-<table>
-  <thead>
-    <tr>
-      <th><%= @book.title %></th>
-      <th><%= @book.body %></th>
-      <th><%= link_to "Edit", edit_book_path(@book.id) %></th>
-      <th><%= link_to "Destroy", "/books/#{@book.id}", method: :delete, "data-confirm" => "本当に削除しますか？" %></th>
-    </tr>
-  </thead>
-</table>
+      <% if @user.id == current_user.id %>
+        <p><%= link_to "プロフ編集", edit_user_path(@user) %></p>
+      <% end %>
+
+
+      <%= form_with model:@book_new, url:'/books', local:true do |f| %>
+        <h1>New book</h1>
+        <p>title</p>
+        <%= f.text_field :title %>
+        <p>Opinion</p>
+        <%= f.text_area :body %>
+        <%= f.submit 'Create Book' %>
+      <% end %>
+    </div>
+    
+    <div class="col-md-8 offset-md-1">
+      <h1>Book detail</h1>
+      <table>
+        <thead>
+          <tr>
+            <th><%= @book.title %></th>
+            <th><%= @book.body %></th>
+            <th><%= link_to "Edit", edit_book_path(@book.id) %></th>
+            <th><%= link_to "Destroy", "/books/#{@book.id}", method: :delete, "data-confirm" => "本当に削除しますか？" %></th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div>
