@@ -3,13 +3,21 @@
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h2>User info</h2>
       <%= form_with model:@user, local:true do |f| %>
-        <p>Name</p>
+        <div class="form-group">
+          <label for="user_name">Name</label>
+        </div>
         <%= f.text_field :name %>
-        <p>Image</p>
+        <div class="form-group">
+          <label for="user_image">Image</label>
+        </div>
         <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
-        <p>Introduction</p>
+        <div class="form-group">
+          <label for="user_introduction">Introduction</label>
+        </div>
         <%= f.text_area :introduction %>
-        <%= f.submit "Update User" %>
+        <div class="form-group">
+          <input type="submit" name="commit" value="Update User" class="btn btn-secondary" data-disable-with="Update User">
+        </div>
       <% end %>
     </div>
   </div>
