@@ -38,3 +38,23 @@ Booksページ（booksのindexページ）
 @投稿一覧（投稿したユーザのアイコン.title.opunion）
 ユーザアイコンのところにリンク→投稿したユーザのshowページ
 @titleのところにリンク→booksの詳細ページ（show）
+
+レイアウト
+home
+@top
+@about
+
+books
+@index
+show
+edit
+
+users
+@index
+show
+edit
+@_profile
+
+device
+@log in
+@sign in
